@@ -1,0 +1,246 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <title>丰富网页示例</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <style>
+    :root {
+      --bg-color: #f5f7fb;
+      --text-color: #333;
+      --card-bg: #fff;
+      --primary: #4a6cf7;
+    }
+
+    body.dark {
+      --bg-color: #1e1e2f;
+      --text-color: #eee;
+      --card-bg: #2a2a3d;
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      font-family: "Segoe UI", Arial, sans-serif;
+      background-color: var(--bg-color);
+      color: var(--text-color);
+      transition: 0.3s;
+    }
+
+    /* ===== 导航栏 ===== */
+    header {
+      background: var(--card-bg);
+      box-shadow: 0 4px 10px rgba(0,0,0,0.05);
+      padding: 15px 30px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      position: sticky;
+      top: 0;
+      z-index: 100;
+    }
+
+    header h2 {
+      margin: 0;
+      color: var(--primary);
+    }
+
+    nav a {
+      margin-left: 20px;
+      text-decoration: none;
+      color: var(--text-color);
+      font-weight: 500;
+    }
+
+    nav button {
+      margin-left: 20px;
+      padding: 6px 12px;
+      border-radius: 6px;
+      border: none;
+      cursor: pointer;
+      background: var(--primary);
+      color: #fff;
+    }
+
+    /* ===== Hero 区 ===== */
+    .hero {
+      padding: 80px 20px;
+      text-align: center;
+    }
+
+    .hero h1 {
+      font-size: 42px;
+    }
+
+    .hero p {
+      max-width: 600px;
+      margin: 20px auto;
+      color: #777;
+    }
+
+    .hero button {
+      padding: 12px 28px;
+      font-size: 16px;
+    }
+
+    /* ===== 卡片区域 ===== */
+    .section {
+      padding: 60px 30px;
+    }
+
+    .cards {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+      gap: 20px;
+      max-width: 1000px;
+      margin: auto;
+    }
+
+    .card {
+      background: var(--card-bg);
+      padding: 25px;
+      border-radius: 12px;
+      box-shadow: 0 6px 16px rgba(0,0,0,0.06);
+    }
+
+    .card h3 {
+      margin-top: 0;
+      color: var(--primary);
+    }
+
+    /* ===== 表单 ===== */
+    form {
+      max-width: 420px;
+      margin: auto;
+      display: flex;
+      flex-direction: column;
+      gap: 15px;
+    }
+
+    input, textarea {
+      padding: 10px;
+      border-radius: 6px;
+      border: 1px solid #ccc;
+      font-size: 14px;
+    }
+
+    textarea {
+      resize: none;
+      height: 100px;
+    }
+
+    form button {
+      padding: 10px;
+    }
+
+    /* ===== 模态框 ===== */
+    .modal {
+      position: fixed;
+      inset: 0;
+      background: rgba(0,0,0,0.5);
+      display: none;
+      justify-content: center;
+      align-items: center;
+    }
+
+    .modal-content {
+      background: var(--card-bg);
+      padding: 30px;
+      border-radius: 10px;
+      text-align: center;
+      width: 300px;
+    }
+
+    footer {
+      text-align: center;
+      padding: 20px;
+      color: #888;
+    }
+  </style>
+</head>
+
+<body>
+
+<header>
+  <h2>MySite</h2>
+  <nav>
+    <a href="#features">功能</a>
+    <a href="#contact">联系</a>
+    <button onclick="toggleTheme()">切换模式</button>
+  </nav>
+</header>
+
+<section class="hero">
+  <h1>一个比较丰富的网页示例</h1>
+  <p>
+    这是一个包含导航、卡片、弹窗、表单和主题切换的完整网页示例，
+    适合学习或作为项目起点。
+  </p>
+  <button onclick="openModal()">立即体验</button>
+</section>
+
+<section class="section" id="features">
+  <h2 style="text-align:center">主要功能</h2>
+  <div class="cards">
+    <div class="card">
+      <h3>模块化布局</h3>
+      <p>使用卡片和区块结构，页面清晰易扩展。</p>
+    </div>
+    <div class="card">
+      <h3>深色模式</h3>
+      <p>一键切换浅色 / 深色主题，提升体验。</p>
+    </div>
+    <div class="card">
+      <h3>交互效果</h3>
+      <p>弹窗、表单和按钮交互让页面更生动。</p>
+    </div>
+  </div>
+</section>
+
+<section class="section" id="contact">
+  <h2 style="text-align:center">联系我们</h2>
+  <form onsubmit="submitForm(event)">
+    <input type="text" placeholder="你的名字" required>
+    <input type="email" placeholder="邮箱" required>
+    <textarea placeholder="留言内容"></textarea>
+    <button type="submit">提交</button>
+  </form>
+</section>
+
+<div class="modal" id="modal">
+  <div class="modal-content">
+    <h3>欢迎你 🎉</h3>
+    <p>这是一个弹窗示例</p>
+    <button onclick="closeModal()">关闭</button>
+  </div>
+</div>
+
+<footer>
+  © 2026 MySite · 示例网页
+</footer>
+
+<script>
+  function openModal() {
+    document.getElementById('modal').style.display = 'flex';
+  }
+
+  function closeModal() {
+    document.getElementById('modal').style.display = 'none';
+  }
+
+  function toggleTheme() {
+    document.body.classList.toggle('dark');
+  }
+
+  function submitForm(event) {
+    event.preventDefault();
+    alert("表单已提交（示例）✅");
+  }
+</script>
+
+</body>
+</html>
